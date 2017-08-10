@@ -36,7 +36,7 @@ public class CartController {
 	@Autowired
 	private CartServiceInt cartService;
 	
-	@RequestMapping("/reqAddItemToCart/{psid}")
+	@RequestMapping("/reqAddItemToCart/{psid}")//asjfnkasnfksf
 	public String addItemToCart(@PathVariable("psid")String psid, @RequestParam("qty")int qty,HttpSession hsession,Model m){
 		System.out.println("psid : "+psid + "  qty : " + qty);
 		Customer cust = (Customer)hsession.getAttribute("customerprofile");
