@@ -17,6 +17,8 @@ import aashish.model.Customer;
 import aashish.model.ShippingAddress;
 import aashish.model.UserDetails;
 import aashish.model.VW_PROD_SUPP_XPS;
+import aashish.model.Vw_Cust_Rating;
+import aashish.service.CustomerOrderServiceInt;
 import aashish.service.CustomerServiceInt;
 import aashish.service.UserDetailsServiceInt;
 
@@ -28,40 +30,42 @@ public class CustomerController {
 
 	@Autowired
 	private UserDetailsServiceInt userDetailsService;
+	@Autowired
+	private CustomerOrderServiceInt customerOrderService;
 
 	@RequestMapping("/reqSignupPage")
 	public String displaysignuppage(Model m) {
-		UserDetails ud = new UserDetails();
-		ShippingAddress sad = new ShippingAddress();
-		Customer cust = new Customer();
-		cust.setUserDetails(ud);
-		cust.setShippingAddress(sad);
-		m.addAttribute("customerObject", cust);
+		UserDetails userDetails = new UserDetails();
+		ShippingAddress shippingAddress = new ShippingAddress();
+		Customer customer = new Customer();
+		customer.setUserDetails(userDetails);
+		customer.setShippingAddress(shippingAddress);
+		m.addAttribute("customerObject", customer);
 		return "signupForm";
 	}
 
 	@RequestMapping("/reqSendSignupData")
-	public String sendSignUpData(@ModelAttribute("customerObject") Customer cust, Model m) {
+	public String sendSignUpData(@ModelAttribute("customerObject") Customer customer, Model m) {
 
-		cust.setEnabled(true);
-		cust.getUserDetails().setRole("ROLE_USER");
-		cust.getUserDetails().setEnabled(true);
+		customer.setEnabled(true);
+		customer.getUserDetails().setRole("ROLE_USER");
+		customer.getUserDetails().setEnabled(true);
 
-		BillingAddress bad = new BillingAddress();
-		bad.setHouseno(cust.getShippingAddress().getHouseno());
-		bad.setStreet(cust.getShippingAddress().getStreet());
-		bad.setArea(cust.getShippingAddress().getArea());
-		bad.setCity(cust.getShippingAddress().getCity());
-		bad.setState(cust.getShippingAddress().getState());
-		bad.setCountry(cust.getShippingAddress().getCountry());
-		bad.setPincode(cust.getShippingAddress().getPincode());
+		BillingAddress billingAddress = new BillingAddress();
+		billingAddress.setHouseno(customer.getShippingAddress().getHouseno());
+		billingAddress.setStreet(customer.getShippingAddress().getStreet());
+		billingAddress.setArea(customer.getShippingAddress().getArea());
+		billingAddress.setCity(customer.getShippingAddress().getCity());
+		billingAddress.setState(customer.getShippingAddress().getState());
+		billingAddress.setCountry(customer.getShippingAddress().getCountry());
+		billingAddress.setPincode(customer.getShippingAddress().getPincode());
 
-		Cart crt = new Cart();
+		Cart cart = new Cart();
 
-		cust.setBillingAddress(bad);
-		cust.setCart(crt);
+		customer.setBillingAddress(billingAddress);
+		customer.setCart(cart);
 
-		String userid = customerService.addCustomer(cust);
+		String userid = customerService.addCustomer(customer);
 		String message = "Signup is successfull.\nNew User id : " + userid;
 		m.addAttribute("signupmsg", message);
 		m.addAttribute("userObject", new UserDetails());
@@ -69,15 +73,15 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/reqLoginPage")
-	public String loginPage(UserDetails ud, Model m) {
+	public String loginPage(UserDetails userDetails, Model m) {
 		m.addAttribute("userObject", new UserDetails());
 		return "loginpage";
 	}
 
 	@RequestMapping("/reqLoginCheck")
-	public String loginCheck(@ModelAttribute("userObject") UserDetails ud, Model m, HttpSession hsession) {
+	public String loginCheck(@ModelAttribute("userObject") UserDetails userDetails, Model m, HttpSession hsession) {
 
-		UserDetails temp = userDetailsService.loginCheck(ud);
+		UserDetails temp = userDetailsService.loginCheck(userDetails);
 		System.out.println(temp);
 		if (temp == null) {// if authentication failed
 			String message = "Login failed..,\nTry again...";
@@ -89,7 +93,7 @@ public class CustomerController {
 			hsession.setAttribute("customerprofile", customerService.getCustomerByUserId(temp.getUserid()));
 			m.addAttribute("productsuser", productsuser);
 			System.out.println("data in controller  :" + productsuser);
-			return "userHomepage1";
+			return "userHomePage";
 		} else {
 			m.addAttribute("userid", temp.getUserid());
 
@@ -97,26 +101,38 @@ public class CustomerController {
 		}
 	}
 
-	@RequestMapping("/reqDisplayProductsUser")
+	/*@RequestMapping("/reqDisplayProductsUser")
 	public String displayProductsUser(Model m){
 		List <VW_PROD_SUPP_XPS> productsuser = customerService.getProductsForUser();
 		m.addAttribute("productsuser", productsuser);
 		return "userHomepage1";
+	}*/
+	@RequestMapping("/reqDisplayProductsUser")
+	public String displayProductsUser(HttpSession hsession,Model m){	
+		Customer oldcustomer = (Customer)hsession.getAttribute("customerprofile");
+		Customer newcustomer = customerService.getCustomerByID(oldcustomer.getCustomerid());
+		hsession.setAttribute("customerprofile", newcustomer);
+		List <VW_PROD_SUPP_XPS> productsuser = customerService.getProductsForUser();
+		m.addAttribute("productsuser", productsuser);
+		return "userHomePage";
 	}
 	
 	
+	
 	@RequestMapping("/reqProductAllSuppliers")
-	public String getProductsAllSuppliers(@RequestParam("pid") String pid, Model m) {
-		List<VW_PROD_SUPP_XPS> allSupProd = customerService.getAllSuppProd(pid);
-		m.addAttribute("allSupProd", allSupProd);
+	public String getProductsAllSuppliers(@RequestParam("productid") String productid, Model m) {
+		List<VW_PROD_SUPP_XPS> allSupplierProduct = customerService.getAllSuppProd(productid);
+		List<Vw_Cust_Rating> reviewData = customerOrderService.getCommentsForProduct(allSupplierProduct.get(0).getProductid());
+		m.addAttribute("allSupProd", allSupplierProduct);
+		m.addAttribute("reviewData", reviewData);
 		return "allProdSuppliers";
 
 	}
 	@RequestMapping("/reqLogout")
 	public String logout(HttpSession hsession,Model m){
 		hsession.invalidate();
-		String logoutmessage = "Logged out successfully.\nThanks for visiting our site...";
-		m.addAttribute("message", logoutmessage);
+		String logoutMessage = "Logged out successfully.\nThanks for visiting our site...";
+		m.addAttribute("message", logoutMessage);
 		return "index";
 
 }

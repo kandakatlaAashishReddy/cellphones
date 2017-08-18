@@ -44,7 +44,7 @@
 					<br>
 					
 					<form action="${url}">
-						<select name="qty" id="qty" style="color: red">
+						<select name="quantity" id="qty" style="color: red">
 							<option value="1" style="color: red">1</option>
 							<option value="2" style="color: red">2</option>
 							<option value="3" style="color: red">3</option>

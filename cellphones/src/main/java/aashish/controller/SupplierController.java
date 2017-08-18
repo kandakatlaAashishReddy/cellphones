@@ -24,9 +24,9 @@ public class SupplierController {
 	}
 
 	@RequestMapping("/reqsupplierform")
-	public String displaysignupdata(@ModelAttribute("supplierObject") Supplier sup, Model m) {
-		sup.setIssupplieravailable(true);
-		supplierService.addSupplier(sup);
+	public String displaysignupdata(@ModelAttribute("supplierObject") Supplier supplier, Model m) {
+		supplier.setIssupplieravailable(true);
+		supplierService.addSupplier(supplier);
 		return "adminHomePage";
 	}
 
@@ -40,22 +40,22 @@ public class SupplierController {
 	}
 
 	@RequestMapping("/reqdeletesupplierAdmin")
-	public String deletesupplier(@RequestParam("sp") String sp) {
-		supplierService.deleteSupplier(sp);
+	public String deletesupplier(@RequestParam("sp") String supplierproduct) {
+		supplierService.deleteSupplier(supplierproduct);
 		return "redirect:reqDisplaySuppliers";
 	}
 
 	@RequestMapping("/reqeditsupplierpageAdmin")
-	public String editsupplier(@RequestParam("sp") String sp, Model m) {
-		Supplier sup = supplierService.getSupplierByID(sp);
-		m.addAttribute("supplier", sup);
+	public String editsupplier(@RequestParam("sp") String supplierproduct, Model m) {
+		Supplier supplier = supplierService.getSupplierByID(supplierproduct);
+		m.addAttribute("supplier", supplier);
 		return "supplierEditAdmin";
 
 	}
 
 	@RequestMapping("/reqSendUpdatedSupplierToDB")
-	public String updateSupplierToDB(@ModelAttribute("supplierObject") Supplier sup) {
-		supplierService.updateSupplier(sup);
+	public String updateSupplierToDB(@ModelAttribute("supplierObject") Supplier supplier) {
+		supplierService.updateSupplier(supplier);
 		return "redirect:reqDisplaySuppliers";
 	}
 

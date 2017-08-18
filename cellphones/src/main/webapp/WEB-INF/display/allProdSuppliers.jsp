@@ -97,6 +97,21 @@ $(document).ready(function(){
 	</div>
 
 	<br>
+	<div class="container">
+
+<c:forEach items="${revdata}" var="review">
+
+<div class="col-sm-12" style="color:pink">
+	<c:url value="/resources/images/customer/${review.customerid}.jpg" var="url"></c:url>
+	<img src="${url}" class="img-circle padding-right:20px" height="50" width="60"/> ${review.customername}
+	<br><span class="badge" style="background-color:green"><span class="glyphicon glyphicon-star"></span> ${review.rating} </span>
+	<br>Comments : ${review.comments}	
+</div>
+
+</c:forEach>
+</div>
+
+
 
 </body>
 </html>

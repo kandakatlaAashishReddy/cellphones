@@ -1,5 +1,6 @@
 package aashish.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,7 @@ import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 @Entity
-public class Customer {
+public class Customer implements Serializable{
 	@Id
 private String customerid;
 private String customername;

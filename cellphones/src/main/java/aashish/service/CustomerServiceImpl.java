@@ -32,6 +32,8 @@ public class CustomerServiceImpl implements CustomerServiceInt {
 	public Customer getCustomerByID(String custid) {	
 		return customerDao.getCustomerByID(custid);
 	}
+
+	
 	
 	
 	

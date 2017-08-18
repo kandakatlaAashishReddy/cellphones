@@ -1,5 +1,7 @@
 package aashish.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -7,7 +9,7 @@ import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 @Entity
-public class UserDetails {
+public class UserDetails implements Serializable {
 	@Id
 private String userid;
 private String password;

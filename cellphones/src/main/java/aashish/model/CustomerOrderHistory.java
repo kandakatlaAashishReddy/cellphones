@@ -10,9 +10,9 @@ public class CustomerOrderHistory {
 private String orderhistoryid;
 private String productid;
 private String supplierid;
-private String price;
-private String quantity;
-private String total;
+private int price;
+private int  quantity;
+private int  total;
 private String customerid;
 private boolean reviewgiven;
 private float rating;
@@ -47,27 +47,31 @@ public void setSupplierid(String supplierid) {
 	this.supplierid = supplierid;
 }
 
-public String getPrice() {
+
+
+
+
+public int getPrice() {
 	return price;
 }
 
-public void setPrice(String price) {
+public void setPrice(int price) {
 	this.price = price;
 }
 
-public String getQuantity() {
+public int getQuantity() {
 	return quantity;
 }
 
-public void setQuantity(String quantity) {
+public void setQuantity(int quantity) {
 	this.quantity = quantity;
 }
 
-public String getTotal() {
+public int getTotal() {
 	return total;
 }
 
-public void setTotal(String total) {
+public void setTotal(int total) {
 	this.total = total;
 }
 

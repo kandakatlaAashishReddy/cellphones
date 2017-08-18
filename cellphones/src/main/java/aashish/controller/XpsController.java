@@ -39,10 +39,10 @@ public class XpsController {
 	
 	@RequestMapping("/reqAddProdSuppForm")
 	public String addSupplierForm(Model m,HttpSession hsession){	
-		List<Product> prdata = productService.getProducts();
-		List<Supplier> supdata = supplierService.getSupplier();
-		m.addAttribute("products", prdata);
-		m.addAttribute("suppliers", supdata);
+		List<Product> productData = productService.getProducts();
+		List<Supplier> supplierData = supplierService.getSupplier();
+		m.addAttribute("products", productData);
+		m.addAttribute("suppliers", supplierData);
 		m.addAttribute("prodsuppObject", new XMAP_Product_Supplier());
 		return "addProdSupp";
 	}
@@ -58,8 +58,8 @@ public class XpsController {
 	}
 	
 	@RequestMapping("/reqDeleteXps")
-	public String deleteXps(@RequestParam("psid")String psid,Model m,HttpSession hsession){
-		xpsService.deleteXps(psid);	
+	public String deleteXps(@RequestParam("psid")String productSupplierid,Model m,HttpSession hsession){
+		xpsService.deleteXps(productSupplierid);	
 		String xpsmessage="XPS Record deleted successfully...";
 		m.addAttribute("xpsmessage", xpsmessage);
 		List<XMAP_Product_Supplier> data = xpsService.getAllXps();

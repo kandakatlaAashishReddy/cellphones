@@ -23,9 +23,9 @@ public class ProductController {
 		return "addProduct";
 	}
 	@RequestMapping("/reqproductform")
-	public String displaysignupdata(@ModelAttribute("productObject")Product prd,Model m){
-		prd.setIsproductavailable(true);
-		productService.addProduct(prd);
+	public String displaysignupdata(@ModelAttribute("productObject")Product product,Model m){
+		product.setIsproductavailable(true);
+		productService.addProduct(product);
 		return "adminHomePage";
 }
 	@RequestMapping("/reqDisplayProductsAdmin")
@@ -38,19 +38,19 @@ public class ProductController {
 	}
 
 	@RequestMapping("/reqDeleteProductAdmin")
-	public String deleteproduct(@RequestParam("pid")String pid){
-		productService.deleteProduct(pid);
+	public String deleteproduct(@RequestParam("pid")String productid){
+		productService.deleteProduct(productid);
 		return "redirect:reqDisplayProductsAdmin";
 	}
 	@RequestMapping("/reqEditProductPageAdmin")
-	public String editproduct(@RequestParam("pid")String pid,Model m){
-		Product prd= productService.getProductByID(pid);
-		m.addAttribute("product",prd);
+	public String editproduct(@RequestParam("pid")String productid,Model m){
+		Product product= productService.getProductByID(productid);
+		m.addAttribute("product",product);
 		return "productEditAdmin";
 	}
 	@RequestMapping("/reqSendUpdatedProductToDB")
-	public String updateProductToDB(@ModelAttribute("productObject")Product prd){
-		productService.updateProduct(prd);
+	public String updateProductToDB(@ModelAttribute("productObject")Product product){
+		productService.updateProduct(product);
 		return "redirect:reqDisplayProductsAdmin";
 	}
 }

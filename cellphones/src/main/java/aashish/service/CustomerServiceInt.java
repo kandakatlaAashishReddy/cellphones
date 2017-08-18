@@ -11,6 +11,4 @@ public interface CustomerServiceInt {
 	public List<VW_PROD_SUPP_XPS> getProductsForUser();
 	public List<VW_PROD_SUPP_XPS> getAllSuppProd(String pid);
 	public Customer getCustomerByID(String custid);
-
-
 }

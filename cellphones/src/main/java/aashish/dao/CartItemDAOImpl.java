@@ -60,6 +60,15 @@ public class CartItemDAOImpl implements CartItemDAOInt {
 			removeCartItem(cartItem.getCartitemid());
 
 	}
+	public void removeAllCartItems1(Cart cart) {
+		/*Session session=sessionFactory.openSession();
+		Customer customer = session.get(Customer.class, customerid);
+		Cart cart = customer.getCart();
+		*/
+		List<CartItem> cartItems=cart.getCartItems();		
+		for(CartItem cartItem:cartItems)
+			removeCartItem(cartItem.getCartitemid());
+	}
 	private String generateCartItemId(){		
 		String newCid="";		
 		Session s = sessionFactory.openSession();
@@ -93,6 +102,7 @@ public class CartItemDAOImpl implements CartItemDAOInt {
 		}
 			return newCid;
 	}
+	
 	
 
 }
