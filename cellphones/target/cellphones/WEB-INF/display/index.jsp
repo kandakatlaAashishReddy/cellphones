@@ -17,9 +17,7 @@
    .carousel-control.left, .carousel-control.right {
   background-image: none;opacity=0.4;
 }
-body{
-background-color: orange;
-}
+
   </style>
  
 </head>
@@ -28,7 +26,7 @@ background-color: orange;
 <%@ include file="navbarBeforlogin.jsp" %>
   
 <div class="container">
-  <h3>BUY 1 GET 1 FREE</h3>
+  <h3>DIWALI BONUS GIFTS AND OFFERS UPTO 50%</h3>
 </div>
 <div class="container">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -37,29 +35,22 @@ background-color: orange;
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
-       <li data-target="#myCarousel" data-slide-to="3"></li>
-        <li data-target="#myCarousel" data-slide-to="4"></li>
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active" align="center">
-        <img src="resources\images\users\i1.jpg" alt="Los Angeles" style="style="width:30%; height:250px">
+        <img src="resources\images\users\ph2.jpg" alt="SAMSUNG" style="style="width:50%; height:400px">
       </div>
 
       <div class="item" align="center">
-        <img src="resources\images\users\i2.jpg" alt="Chicago" style="style="width:30%; height:250px">
+        <img src="resources\images\users\ph3.jpg" alt="NOKIA" style="style="width:50%; height:400px">
       </div>
     
       <div class="item" align="center">
-        <img src="resources\images\users\i3.jpg" alt="New york" style=" style="width:30%; height:250px">
+        <img src="resources\images\users\ph5.jpg" alt="I-PHONE" style=" style="width:50%; height:400px">
       </div>
-      <div class="item" align="center">
-        <img src="resources\images\users\i4.jpg" alt="New york" style=" style="width:30%; height:250px">
-      </div>
-      <div class="item" align="center">
-        <img src="resources\images\users\i5.jpg" alt="New york" style=" style="width:30%; height:250px">
-      </div>
+      
     </div>
 
     <!-- Left and right controls -->
@@ -77,27 +68,27 @@ background-color: orange;
 <div class="container">
 <div class="zoomin">
 <div class="col-sm-4">
-<img src="resources/images/users/PRD00002.jpg" width="200px" height="150px"/>
+<img src="resources/images/users/ph4.jpg" width="200px" height="150px"/>
 <br>
-ROLEX
+SMART PHONE
 </div>
 </div>
 
 
 <div class="zoomin">
 <div class="col-sm-4">
-<img src="resources/images/users/i4.jpg" width="200px" height="150px"/>
+<img src="resources/images/users/ph6.jpg" width="200px" height="150px"/>
 <br>
-TISSOT
+SAMSUNG
 </div>
 </div>
 
 
 <div class="zoomin">
 <div class="col-sm-4">
-<img src="resources/images/users/i5.jpg" width="200px" height="150px"/>
+<img src="resources/images/users/ph7.jpg" width="200px" height="150px"/>
 <br>
-TAGHEUR
+ONE PLUS3
 </div>
 </div>
 

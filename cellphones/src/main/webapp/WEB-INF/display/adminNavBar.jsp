@@ -1,6 +1,13 @@
+<div class="container-fluid">
 <nav class="container navbar navbar-inverse  navbar-fixed-top" style="border-radius:10px;margin-bottom:0;padding-bottom:0px">
-	<div class="container">
 	
+	
+  
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SMART MOBILES</a>
+   
+    </div>
+    
 	
 	
 		<ul class="nav navbar-nav" >
@@ -12,7 +19,11 @@
 				<ul class="dropdown-menu" style="vertical-align: middle">
 					<li><a href="#">Edit Profile</a></li>
 					<li><a href="#">Change Password</a></li>
-					<li><a href="reqLogout">Logout</a></li>
+					<li><a href="j_spring_security_logout" >Logout</a></li>
+
+<!-- <li><a href="reqLogout">Logout</a></li> -->
+					
+					
 				</ul>
 			</li>
 
@@ -47,5 +58,7 @@
 				</ul></li>
 		</ul>	
 	
-	</div>
+	
+	
 </nav>
+</div>

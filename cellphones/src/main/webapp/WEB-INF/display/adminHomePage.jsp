@@ -9,6 +9,10 @@
 </head>
 <body>
 <%@ include file="adminNavBar.jsp" %>
+<br>
+<br>
+<br>
+<br>
 admin home page
 Welcome ${username}  
 </body>

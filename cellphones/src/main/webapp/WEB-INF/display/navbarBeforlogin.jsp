@@ -8,7 +8,7 @@
       <li><a href="reqMobile" >Mobile</a></li>
       <li><a href="reqAccessories">Accessories</a></li>
             <li><a href="reqSignupPage"><span class="glyphicon glyphicon-user"></span>sign up</a></li>
-      <li><a href="reqLoginPage"><span class="glyphicon glyphicon-log-in"></span>login</a></li>
+      <li><a href="reqLoginPage1"><span class="glyphicon glyphicon-log-in"></span>login</a></li>
     </ul>
   </div>
 </nav>

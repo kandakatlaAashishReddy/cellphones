@@ -10,7 +10,9 @@
 				<ul class="dropdown-menu" style="vertical-align: middle">
 					<li><a href="#">Edit Profile</a></li>
 					<li><a href="#">Change Password</a></li>
-					<li><c:url value="/reqLogout" var="url"></c:url><a href="${url}">Logout</a></li>
+					<li><c:url value="/j_spring_security_logout" var="url"></c:url><a href="${url}">Logout</a></li>
+					<%-- <li><c:url value="/reqLogout" var="url"></c:url><a href="${url}">Logout</a></li> --%>
+					
 				</ul>
 			</li>
 			

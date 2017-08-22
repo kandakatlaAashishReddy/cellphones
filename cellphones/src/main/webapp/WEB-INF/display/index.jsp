@@ -15,7 +15,7 @@
       height:250px;
   }
    .carousel-control.left, .carousel-control.right {
-  background-image: none;opacity=0.4;
+  background-image: none;opacity:0.4;
 }
 
   </style>

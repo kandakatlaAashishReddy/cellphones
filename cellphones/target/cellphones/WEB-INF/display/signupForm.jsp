@@ -105,7 +105,7 @@
 
 		<div class="col-sm-6">
 
-			<img src="resources/images/products/PRD00014.jpg" height="250px"
+			<img src="resources/images/users/PS.jpg" height="500px"
 				width="100%" /> <br>
 		</div>
 	</div>
