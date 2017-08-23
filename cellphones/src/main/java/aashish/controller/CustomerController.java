@@ -4,10 +4,12 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,12 +43,44 @@ public class CustomerController {
 		Customer customer = new Customer();
 		customer.setUserDetails(userDetails);
 		customer.setShippingAddress(shippingAddress);
-		m.addAttribute("customerObject", customer);
-		return "signupForm";
+		m.addAttribute("customer", customer);
+		return "signupform1";
 	}
 
 	@RequestMapping("/reqSendSignupData")
 	public String sendSignUpData(@ModelAttribute("customerObject") Customer customer, Model m) {
+
+		customer.setEnabled(true);
+		customer.getUserDetails().setRole("ROLE_USER");
+		customer.getUserDetails().setEnabled(true);
+
+		BillingAddress billingAddress = new BillingAddress();
+		billingAddress.setHouseno(customer.getShippingAddress().getHouseno());
+		billingAddress.setStreet(customer.getShippingAddress().getStreet());
+		billingAddress.setArea(customer.getShippingAddress().getArea());
+		billingAddress.setCity(customer.getShippingAddress().getCity());
+		billingAddress.setState(customer.getShippingAddress().getState());
+		billingAddress.setCountry(customer.getShippingAddress().getCountry());
+		billingAddress.setPincode(customer.getShippingAddress().getPincode());
+
+		Cart cart = new Cart();
+
+		customer.setBillingAddress(billingAddress);
+		customer.setCart(cart);
+
+		String userid = customerService.addCustomer(customer);
+		String message = "Signup is successfull.\nNew User id : " + userid;
+		m.addAttribute("signupmsg", message);
+		m.addAttribute("userObject", new UserDetails());
+		return "loginpage";
+	}
+	@RequestMapping("/reqSendSignupData1") // with validation
+	public String sendSignUpData1(@Valid @ModelAttribute("customer") Customer customer, BindingResult result, Model m) {
+		if (result.hasErrors()) {
+			System.out.println("\nerror");
+			m.addAttribute("customer", customer);
+			return "signupform1";
+		} 
 
 		customer.setEnabled(true);
 		customer.getUserDetails().setRole("ROLE_USER");

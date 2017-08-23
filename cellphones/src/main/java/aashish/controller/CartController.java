@@ -106,6 +106,8 @@ public class CartController {
 	public String deleteAllCartItems(@PathVariable("customerid")String customerid,HttpSession hsession){
 		cartItemService.removeAllCartItems(customerid);		
 		Customer customer = (Customer)hsession.getAttribute("customerprofile");
+		customer.getCart().setTotalbill(0);
+		cartService.updateCart(customer.getCart());
 		hsession.setAttribute("customerprofile", customerService.getCustomerByID(customer.getCustomerid()));
 		return "redirect:/reqDisplayProductsUser";
 	}

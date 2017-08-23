@@ -11,14 +11,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Customer implements Serializable{
 	@Id
 private String customerid;
+	
+@NotEmpty(message="Customer Name can not be empty")
 private String customername;
+@NotEmpty(message="Customer mailid can not be empty")
 private String mailid;
+@NotEmpty(message="Customer mobileno can not be empty")
 private String mobileno;
 private boolean enabled;
 @Transient

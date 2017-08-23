@@ -73,6 +73,7 @@ public class CartItemDAOImpl implements CartItemDAOInt {
 		String newCid="";		
 		Session s = sessionFactory.openSession();
 		Query qr = s.createQuery("from CartItem");
+		@SuppressWarnings("unchecked")
 		List<Customer> data = qr.list();
 		s.close();
 		if(data.size()==0){
